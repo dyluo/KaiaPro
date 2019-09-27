@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion rootProject.ext.app.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.app.minSdkVersion
+        targetSdkVersion rootProject.ext.app.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kapt {
+        generateStubs = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.ext.kotlin_stdlib
+    api rootProject.ext.ax_appcompat
+    api rootProject.ext.core_ktx
+    api rootProject.ext.kotlinx_coroutines_core
+    testImplementation rootProject.ext.testJunit
+    androidTestImplementation rootProject.ext.testRunner
+    androidTestImplementation rootProject.ext.espressoCore
+
+    api rootProject.ext.lifecycle_extensions
+    api rootProject.ext.lifecycle_viewmodel_ktx
+    api rootProject.ext.lifecycle_common_java8
+    kapt rootProject.ext.lifecycle_compiler
+//    api rootProject.ext.lifecycle_reactivestreams
+
+    api rootProject.ext.retrofit
+    api rootProject.ext.gson
+    api rootProject.ext.converterGson
+    api rootProject.ext.okhttp3
+    api rootProject.ext.okhttp3_log_interceptor
+    api (rootProject.ext.glide4)
+    kapt rootProject.ext.glide4_compiler
+    //            {
+//        exclude group: "com.android.support"
+//    }
+
+    api rootProject.ext.dagger2
+    kapt rootProject.ext.dagger2_compiler
+    api rootProject.ext.dagger2_android
+    api rootProject.ext.dagger2_android_support // if you use the support libraries
+    kapt rootProject.ext.dagger2_android_processor
+
+    api rootProject.ext.di_kodein
+    api rootProject.ext.di_kodein_kx
+    api rootProject.ext.fragment_ktx
+
+}

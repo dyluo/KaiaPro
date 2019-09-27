@@ -1,0 +1,2 @@
+include ':app', ':baselibrary', ':coremodel', ':commonbusiness'
+rootProject.name='KaiaBasePro'

@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def getJksFile(){
+    def jksFile = file("../jks/NoahPay.keystore")
+    if(jksFile.exists()){
+        return "../jks/NoahPay.keystore"
+    }
+    return "/opt/jks/NoahPay.keystore"
+}
+
+def getVersionCode(){
+    def versionFile = file('version.properties')
+    if(versionFile.canRead()){
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def versionCode = versionProps['version_code'].toInteger()
+        println("versionCode ="+versionCode)
+        if(project.hasProperty("increment")){
+            versionProps['version_code'] = (++versionCode).toString()
+            versionProps.store(versionFile.newWriter(), null)
+        }
+
+        return versionCode
+    }else{
+        throw new GradleException("Could not find version.properties!")
+    }
+}
+
+android {
+    def currentVersionCode = getVersionCode()
+
+    compileSdkVersion rootProject.ext.app.compileSdkVersion
+    defaultConfig {
+        applicationId "com.luo.kaiabase"
+        minSdkVersion rootProject.ext.app.minSdkVersion
+        targetSdkVersion rootProject.ext.app.targetSdkVersion
+        versionCode currentVersionCode
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "env", '"test"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //打包命名
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {output ->
+            def versionCode = variant.versionCode
+            output.outputFileName  = "kaiabase_${variant.name}_v${defaultConfig.versionName}_vc${versionCode}.apk"
+        }
+    }
+
+
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+}
+def libExt = rootProject.ext
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':commonbusiness')
+
+    implementation libExt.constraintlayout
+
+}

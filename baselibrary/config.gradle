@@ -1,0 +1,61 @@
+ext{
+    kotlin_version = "1.3.50"
+    androidxVersion = '1.1.0'
+    dagger_version = '2.24'
+    okhttp3_version = '4.2.0'
+    retrofit_version = '2.6.1'
+    glide_version = '4.9.0'
+    kodein_version = '5.2.0'
+    lifecycle_version = '2.1.0'
+
+    app=[
+            compileSdkVersion : 29,
+            targetSdkVersion : 29,
+            minSdkVersion : 21,
+            buildGradleVersion:'3.5.0'
+    ]
+
+    testJunit = 'junit:junit:4.12'
+    testRunner = 'androidx.test:runner:1.2.0'
+    espressoCore =  'androidx.test.espresso:espresso-core:3.2.0'
+
+    kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    ax_appcompat = "androidx.appcompat:appcompat:$androidxVersion"
+
+    fragment_ktx = "androidx.fragment:fragment-ktx:$androidxVersion"
+
+
+    core_ktx = "androidx.core:core-ktx:$androidxVersion"
+    kotlinx_coroutines_core = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1'
+    lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    lifecycle_compiler =  "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    lifecycle_common_java8 =  "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData
+    lifecycle_reactivestreams =  "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // For Kotlin use lifecycle-reactivestreams-ktx
+
+
+    constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+
+    retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+    gson = 'com.google.code.gson:gson:2.8.5'
+    converterGson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    okhttp3 = "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    okhttp3_log_interceptor = "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+    testOkhttp3 = "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
+    glide4 = "com.github.bumptech.glide:glide:$glide_version"
+    glide4_compiler = "com.github.bumptech.glide:compiler:$glide_version"
+
+    dagger2 = "com.google.dagger:dagger:$dagger_version"
+    dagger2_compiler = "com.google.dagger:dagger-compiler:$dagger_version"
+    dagger2_android = "com.google.dagger:dagger-android:$dagger_version"
+    dagger2_android_support = "com.google.dagger:dagger-android-support:$dagger_version"
+    dagger2_android_processor = "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    di_kodein = "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
+    di_kodein_kx = "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
+}
