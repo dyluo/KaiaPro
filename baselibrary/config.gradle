@@ -1,61 +1,178 @@
-ext{
-    kotlin_version = "1.3.50"
-    androidxVersion = '1.1.0'
-    dagger_version = '2.24'
-    okhttp3_version = '4.2.0'
-    retrofit_version = '2.6.1'
-    glide_version = '4.9.0'
-    kodein_version = '5.2.0'
-    lifecycle_version = '2.1.0'
+ext.deps = [:]
+def versions = [:]
+versions.android_gradle_plugin = "3.5.1"
+versions.appcompat = "1.1.0"
+versions.constraint_layout = "1.1.3"
+versions.core_ktx = "1.1.0"
+versions.fragment_ktx = "1.1.0"
+versions.lifecycle = "2.1.0"
+versions.support = "1.0.0"
+versions.navigation = "2.2.0-beta01"
+versions.arch_core = "2.0.1"
 
-    app=[
-            compileSdkVersion : 29,
-            targetSdkVersion : 29,
-            minSdkVersion : 21,
-            buildGradleVersion:'3.5.0'
-    ]
+versions.glide = "4.9.0"
+versions.okhttp3 = "4.2.0"
+versions.retrofit = "2.6.1"
+versions.kodein = "5.2.0"
+versions.timber = "4.5.1"
+versions.kotlin = "1.3.50"
+versions.kotlin_coroutines = "1.3.1"
+versions.junit = "4.12"
+ext.versions = versions
 
-    testJunit = 'junit:junit:4.12'
-    testRunner = 'androidx.test:runner:1.2.0'
-    espressoCore =  'androidx.test.espresso:espresso-core:3.2.0'
-
-    kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    ax_appcompat = "androidx.appcompat:appcompat:$androidxVersion"
-
-    fragment_ktx = "androidx.fragment:fragment-ktx:$androidxVersion"
-
-
-    core_ktx = "androidx.core:core-ktx:$androidxVersion"
-    kotlinx_coroutines_core = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1'
-    lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    lifecycle_compiler =  "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-
-//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
-    // alternately - if using Java8, use the following instead of lifecycle-compiler
-    lifecycle_common_java8 =  "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-
-    // optional - ReactiveStreams support for LiveData
-    lifecycle_reactivestreams =  "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // For Kotlin use lifecycle-reactivestreams-ktx
+def support = [:]
+support.annotations = "androidx.annotation:annotation:$versions.support"
+support.app_compat = "androidx.appcompat:appcompat:$versions.appcompat"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+support.cardview = "androidx.cardview:cardview:$versions.support"
+support.design = "com.google.android.material:material:$versions.support"
+support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.support"
+support.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
+support.fragment_runtime = "androidx.fragment:fragment:${versions.fragment_ktx}"
+support.fragment_runtime_ktx = "androidx.fragment:fragment-ktx:${versions.fragment_ktx}"
+support.fragment_testing = "androidx.fragment:fragment-testing:${versions.fragment_ktx}"
+deps.support = support
 
 
-    constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+lifecycle.livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+deps.lifecycle = lifecycle
 
-    retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
-    gson = 'com.google.code.gson:gson:2.8.5'
-    converterGson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    okhttp3 = "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    okhttp3_log_interceptor = "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-    testOkhttp3 = "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
-    glide4 = "com.github.bumptech.glide:glide:$glide_version"
-    glide4_compiler = "com.github.bumptech.glide:compiler:$glide_version"
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlin_coroutines"
+deps.kotlin = kotlin
 
-    dagger2 = "com.google.dagger:dagger:$dagger_version"
-    dagger2_compiler = "com.google.dagger:dagger-compiler:$dagger_version"
-    dagger2_android = "com.google.dagger:dagger-android:$dagger_version"
-    dagger2_android_support = "com.google.dagger:dagger-android-support:$dagger_version"
-    dagger2_android_processor = "com.google.dagger:dagger-android-processor:$dagger_version"
 
-    di_kodein = "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
-    di_kodein_kx = "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
+def retrofit2 = [:]
+retrofit2.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit2.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit2.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+deps.retrofit = retrofit2
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3}"
+
+
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.glide = glide
+
+
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.junit = "junit:junit:$versions.junit"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.testRunner = "androidx.test:runner:1.2.0"
+deps.espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 29
+build_versions.build_tools = "29.0.2"
+ext.build_versions = build_versions
+
+
+def navigation = [:]
+//navigation.runtime = "androidx.navigation:navigation-runtime:$versions.navigation"
+navigation.runtime_ktx = "androidx.navigation:navigation-runtime-ktx:$versions.navigation"
+//navigation.fragment = "androidx.navigation:navigation-fragment:$versions.navigation"
+navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+//navigation.ui = "androidx.navigation:navigation-ui:$versions.navigation"
+navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+deps.navigation = navigation
+
+def kodein = [:]
+kodein.runtime = "org.kodein.di:kodein-di-generic-jvm:$versions.kodein"
+kodein.framework = "org.kodein.di:kodein-di-framework-android-x:$versions.kodein"
+deps.kodein = kodein
+
+def arch_core = [:]
+arch_core.runtime = "androidx.arch.core:core-runtime:$versions.arch_core"
+arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
+deps.arch_core = arch_core
+
+ext.deps = deps
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
+ext.addRepos = this.&addRepos
+
+
+
+//ext{
+//    kotlin_version = "1.3.50"
+//    androidxVersion = '1.1.0'
+//    dagger_version = '2.24'
+//    okhttp3_version = '4.2.0'
+//    retrofit_version = '2.6.1'
+//    glide_version = '4.9.0'
+//    kodein_version = '5.2.0'
+//    lifecycle_version = '2.1.0'
+//    support_version = '1.0.0'
+//    navigation_version = '2.1.0'
+//    app=[
+//            compileSdkVersion : 29,
+//            targetSdkVersion : 29,
+//            minSdkVersion : 21,
+//            buildGradleVersion:'3.5.0'
+//    ]
+//
+//    testJunit = 'junit:junit:4.12'
+//    testRunner = 'androidx.test:runner:1.2.0'
+//    espressoCore =  'androidx.test.espresso:espresso-core:3.2.0'
+//
+//    ax_appcompat = "androidx.appcompat:appcompat:$androidxVersion"
+//    fragment_ktx = "androidx.fragment:fragment-ktx:$androidxVersion"
+//    support_design = "com.google.android.material:material:$support_version"
+//    core_ktx = "androidx.core:core-ktx:$androidxVersion"
+//
+//    kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    kotlinx_coroutines_core = 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1'
+//
+//    lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+//    lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+//    lifecycle_compiler =  "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+////    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
+//    // alternately - if using Java8, use the following instead of lifecycle-compiler
+//    lifecycle_common_java8 =  "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+//    // optional - ReactiveStreams support for LiveData
+//    lifecycle_reactivestreams =  "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // For Kotlin use lifecycle-reactivestreams-ktx
+//
+//
+//    navigation_runtime_ktx = "androidx.navigation:navigation-runtime-ktx:$navigation_version"
+//    navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+//    navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$navigation_version"
+//
+//    constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+//
+//    retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+//    gson = 'com.google.code.gson:gson:2.8.5'
+//    converterGson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
+//    okhttp3 = "com.squareup.okhttp3:okhttp:$okhttp3_version"
+//    okhttp3_log_interceptor = "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+//    testOkhttp3 = "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
+//    glide4 = "com.github.bumptech.glide:glide:$glide_version"
+//    glide4_compiler = "com.github.bumptech.glide:compiler:$glide_version"
+//
+//    dagger2 = "com.google.dagger:dagger:$dagger_version"
+//    dagger2_compiler = "com.google.dagger:dagger-compiler:$dagger_version"
+//    dagger2_android = "com.google.dagger:dagger-android:$dagger_version"
+//    dagger2_android_support = "com.google.dagger:dagger-android-support:$dagger_version"
+//    dagger2_android_processor = "com.google.dagger:dagger-android-processor:$dagger_version"
+//
+//    di_kodein = "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
+//    di_kodein_kx = "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
+//}

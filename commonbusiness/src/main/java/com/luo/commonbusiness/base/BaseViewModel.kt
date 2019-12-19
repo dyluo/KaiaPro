@@ -23,6 +23,7 @@ open class BaseViewModel : AndroidViewModel(BaseApplication.INSTANCE),LifecycleO
     }
 
     fun launch(tryBlock: suspend CoroutineScope.() -> Unit) {
+        
         launchOnUI {
             tryCatch(tryBlock, {}, {}, false, displayCommon = true)
         }

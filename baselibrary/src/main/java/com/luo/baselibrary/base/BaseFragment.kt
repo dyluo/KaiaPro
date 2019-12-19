@@ -13,7 +13,7 @@ import android.view.ViewGroup
  *</pre>
  */
 abstract class BaseFragment :InjectionFragment(){
-    private var mRootView: View? = null
+    protected var mRootView: View? = null
 
     abstract val layoutId: Int
 
@@ -28,4 +28,8 @@ abstract class BaseFragment :InjectionFragment(){
         super.onDestroyView()
         mRootView = null
     }
+
+//    protected val scopeProvider: AndroidLifecycleScopeProvider by lazy {
+//        AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY)
+//    }
 }

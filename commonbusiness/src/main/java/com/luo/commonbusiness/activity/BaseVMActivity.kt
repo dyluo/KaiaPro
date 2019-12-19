@@ -2,8 +2,6 @@ package com.luo.commonbusiness.activity
 
 import android.os.Bundle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.Factory
 import androidx.lifecycle.ViewModelProviders
 import com.luo.commonbusiness.base.BaseViewModel
@@ -47,6 +45,7 @@ abstract class BaseVMActivity <VM:BaseViewModel>:BaseActivity(),LifecycleObserve
         super.onDestroy()
 
     }
+
 
 
 }

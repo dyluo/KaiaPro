@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KaiaBasePro</string>
+    <string name="title_home">Home</string>
+    <string name="title_mine">Mine</string>
+    <string name="title_main">Main</string>
+    <string name="button_nav_test">button_nav_test</string>
+    <string name="title_channel">channel</string>
+    <string name="title_in">inChina</string>
 </resources>
