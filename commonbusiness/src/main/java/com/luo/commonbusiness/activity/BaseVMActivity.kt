@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProvider.Factory
 import androidx.lifecycle.ViewModelProviders
 import com.luo.commonbusiness.base.BaseViewModel
+import com.luo.coremodel.api.ApiServices
 
 /**
  *<pre>
@@ -16,6 +17,7 @@ import com.luo.commonbusiness.base.BaseViewModel
 abstract class BaseVMActivity <VM:BaseViewModel>:BaseActivity(),LifecycleObserver{
     lateinit var mViewModel:VM
     lateinit var factory: Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initVM()
@@ -34,6 +36,7 @@ abstract class BaseVMActivity <VM:BaseViewModel>:BaseActivity(),LifecycleObserve
             mViewModel = ViewModelProviders.of(this,providerViewModelFactory()).get(it)
             mViewModel.let(lifecycle::addObserver)
         }
+
     }
 
     open fun onError(e:Throwable) {}

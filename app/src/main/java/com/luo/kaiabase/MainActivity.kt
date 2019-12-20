@@ -1,12 +1,14 @@
 package com.luo.kaiabase
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.luo.commonbusiness.activity.BaseVMActivity
+import com.luo.coremodel.api.ApiServices
 import com.luo.coremodel.data.repository.UserRepository
 import com.luo.kaiabase.ui.main.MainViewModel
 import com.luo.kaiabase.ui.main.MainViewModelFactory
@@ -18,12 +20,17 @@ class MainActivity : BaseVMActivity<MainViewModel>(){
 
     private var currentNavController: LiveData<NavController>?=null
     private val userRepository : UserRepository by instance()
+    private val apiServices : ApiServices by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(savedInstanceState == null){
             setupBottomNavigationBar()
         }
+
+
+        mViewModel.test("hello world")
+        mViewModel.multiTest()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

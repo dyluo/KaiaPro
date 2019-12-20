@@ -13,7 +13,7 @@ import android.view.ViewGroup
  *</pre>
  */
 abstract class BaseFragment :InjectionFragment(){
-    protected var mRootView: View? = null
+    private var mRootView: View? = null
 
     abstract val layoutId: Int
 

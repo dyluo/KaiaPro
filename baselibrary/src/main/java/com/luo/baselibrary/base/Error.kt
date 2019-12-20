@@ -14,9 +14,6 @@ class KaiaError {
         const val ERROR_SERVER:String = "服务器异常"
         const val ERROR_NET:String = "网络异常，请稍后在试"
     }
-
-
-
 }
 
 enum class ErrorType{
